@@ -1,6 +1,14 @@
 # Analysis of historical fragment hits in Fragalysis
 > :construction: This is work that was in progress and requires more, but I am doing other things :construction:
 
+TL;DR; The Spearman correlation between the number of hits and the Z-score normalised B-factor is 0.2 max,
+even after correcting for SASA (buriedness). Identification of the target pocket is crucial, which is not done here.
+Furthermore, simple non-parametric correlation is not a great tool for this and a more complex model is needed.
+
+## Hypothesis
+
+Can a B-factor or water displacement be used to add a risk factor to the sorting of virtual hits?
+
 ## Rationale
 
 In my current strategies I sort virtual hits via multiple properties and cluster by interactions.
@@ -34,6 +42,7 @@ Fragalysis historical data downloaded. PLIP annotated.
 ## Results
 
 > Jupyter notebooks are in the [notebooks](notebooks) folder.
+> For raw data in CSV format see [here](data/Fragalysis-itxn-data.csv).
 
 Data downloaded, normalized and PLIP annotated.
 
@@ -73,7 +82,3 @@ TODO Add results after surface acessible solvent area correction
 ### Water
 
 TODO Add results from water displacement
-
-## Future work
-
-Identification of the target pocket is crucial.
