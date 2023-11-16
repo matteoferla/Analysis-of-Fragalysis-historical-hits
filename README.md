@@ -64,7 +64,9 @@ reduced_libraries['Id'] = reduced_libraries['Id'].apply(','.join)
 TODO Add matching text
 
 ### B-factors
-Caveat: normalizing the B-factors by Z-score normalisation is very common, but they are not gaussian distributed.
+Caveat: normalizing the B-factors by Z-score normalisation is very common, but their distribution is a skew-normal.
+Hence why the non-parametric Spearman is used not Pearson, even if the latter gives better results 
+(by virtue of being misled by the tail).
 
 ![ZBfactor-hist.png](images/ZBfactor-hist.png)
 
