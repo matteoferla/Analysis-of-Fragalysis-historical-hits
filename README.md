@@ -33,15 +33,47 @@ Fragalysis historical data downloaded. PLIP annotated.
 
 ## Results
 
+> Jupyter notebooks are in the [notebooks](notebooks) folder.
+
 Data downloaded, normalized and PLIP annotated.
+
+### Initial screen filtering
+The initial libraries were identified using the dataset 
+from [repo:Fragment-hit-follow-up-chemistry](https://github.com/matteoferla/Fragment-hit-follow-up-chemistry)
+```python
+from rdkit import Chem, rd
+import pandas as pd
+
+libraries = pd.read_csv('https://github.com/matteoferla/Fragment-hit-follow-up-chemistry/raw/main/combined-XChem-libraries.csv', index_col=0)
+reduced_libraries  =  libraries.drop_duplicates(['SMILES', 'library']) \
+                     .groupby('SMILES').agg({'library': ','.join, 
+                                             'Id':set }) \
+                     .reset_index()
+reduced_libraries['Id'] = reduced_libraries['Id'].apply(','.join)
+```
+
+TODO Add matching text
+
+### B-factors
 Caveat: normalizing the B-factors by Z-score normalisation is very common, but they are not gaussian distributed.
 
 ![ZBfactor-hist.png](images/ZBfactor-hist.png)
 
-Does normalized B-factor correlate with number of hits found? 0.05 Spearman correlation is poor.
+Does normalised B-factor correlate with number of hits found? 0.05 Spearman correlation is poor.
 This includes residues that form no interactions with ligands.
 
 ![ZBfactor-vs-hits.png](images/ZBfactor-vs-hits.png)
 
+TODO etc etc 
 
-Bla bla bla
+### SASA
+
+TODO Add results after surface acessible solvent area correction
+
+### Water
+
+TODO Add results from water displacement
+
+## Future work
+
+Identification of the target pocket is crucial.
